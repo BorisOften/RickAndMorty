@@ -9,11 +9,11 @@ import Foundation
 
 final class NetworkManager {
     
-    static let NetworkManger = NetworkManager()
+    static let shared = NetworkManager()
     
     private init () {}
     
-    func getRequest(request: , completion: @escaping () -> Void) ->  {
+    func executeRequest<T: Codable>(requestUrl: RMRequest, expectingType: T.Type , completion: @escaping (Result<T, Error>) -> Void) {
         
     }
 }
