@@ -7,6 +7,12 @@
 
 import Foundation
 
+var BaseURL: String {
+    return "https://rickandmortyapi.com/api/"
+}
+
+
+
 @frozen enum RMEndpoints: String {
     case location
     case character
