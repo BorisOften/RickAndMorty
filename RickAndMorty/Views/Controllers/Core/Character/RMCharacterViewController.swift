@@ -19,10 +19,11 @@ final class RMCharacterViewController: UIViewController {
 }
 
 extension RMCharacterViewController: RMCharacterListViewDelegate {
-    func didSelectACharacter(_ character: RMCharacter) {
+    
+    func didSelectACharacter(_ character: RMCharacter, photo: UIImage) {
         
-        let viewmodel = RMCharacterDetailViewModel()
-        let destVC = RMCharacterDetailViewController(viewModel: viewmodel, character: character)
+        let viewmodel = RMCharacterDetailViewModel(character: character)
+        let destVC = RMCharacterDetailViewController(viewModel: viewmodel, image: photo)
         
         navigationController?.pushViewController(destVC, animated: true)
     }

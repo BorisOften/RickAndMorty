@@ -21,18 +21,18 @@ final class RMCharacterDetailViewController: UIViewController {
     }()
     var episodesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
     }()
     
     var viewModel: RMCharacterDetailViewModel
-    var character: RMCharacter
     
     var cancellables: Set<AnyCancellable> = []
     
-    init(viewModel: RMCharacterDetailViewModel, character: RMCharacter) {
+    init(viewModel: RMCharacterDetailViewModel, image: UIImage) {
         self.viewModel = viewModel
-        self.character = character
+        self.characterPhoto.image = image
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,7 +46,6 @@ final class RMCharacterDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = .red
         configureViewController()
     }
 }
@@ -54,7 +53,7 @@ final class RMCharacterDetailViewController: UIViewController {
 // MARK: - ViewModel Callers
 extension RMCharacterDetailViewController {
     func getCharterDetailInfo() {
-        viewModel.getCharterDetailInfo(characterId: character.id)
+        //viewModel.getCharterDetailInfo(characterId: character.id)
     }
 }
 
@@ -68,26 +67,44 @@ extension RMCharacterDetailViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        viewModel.sections.count
+        1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        if collectionView == infoCollectionView {
+            return viewModel.sections.count
+        } else {
+            return viewModel.character.episode.count
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell
         
         if collectionView == infoCollectionView {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterDetailInfoCell.cellIdentifier, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterDetailInfoCell.cellIdentifier, for: indexPath) as! RMCharacterDetailInfoCell
+            cell.setup(with: viewModel.sections[indexPath.row])
+            return cell
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterDetailEpisodeCell.cellIdentifier, for: indexPath)
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterDetailEpisodeCell.cellIdentifier, for: indexPath) as! RMCharacterDetailEpisodeCell
+            cell.setup(with: viewModel.character.episode[indexPath.row])
+            return cell
         }
-        cell.backgroundColor = .red
-        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let bounds = view.window?.windowScene?.screen.bounds
+        let width = ((bounds?.width ?? 320) - 35)/2
+        
+        if collectionView == infoCollectionView {
+            return CGSize(width: width, height: 100)
+        } else {
+            return CGSize(width: 170, height: 80)
+        }
+        
     }
 }
 

@@ -10,33 +10,25 @@ import UIKit
 
 final class RMCharacterDetailViewModel {
     
-    @Published var character: RMCharacter?
-    @Published var error: String?
+    @Published var character: RMCharacter
+
+    var sections = [RMCharacterInfo]()
     
-    var sections = RMSectionTypes.allCases
-    
-//    init(character: RMCharacter?) {
-//        self.character = character
-//    }
-    
-    func getCharterDetailInfo(characterId: Int) {
-        let id = String(characterId)
-        let url = "\(BaseURL)\(RMEndpoints.character.rawValue)\(id)/"
-        
-        NetworkManager.shared.getRequest(requestUrl: url) { result in
-            
-            switch result {
-            case .success(let data):
-                do {
-                    let character =  try JSONDecoder().decode(RMCharacter.self, from: data)
-                    self.character = character
-                } catch let error {
-                    self.error = error.localizedDescription
-                }
-            case .failure(let error):
-                self.error = error.localizedDescription
-            }
-        }
-        
+    init(character: RMCharacter) {
+        self.character = character
+        getSections()
     }
+    
+    func getSections() {
+        
+        sections = [
+            RMCharacterInfo(type: .name, name: character.name),
+            RMCharacterInfo(type: .status, name: character.status.rawValue),
+            RMCharacterInfo(type: .species, name: character.species),
+            RMCharacterInfo(type: .location, name: character.location.name),
+            RMCharacterInfo(type: .gender, name: character.gender.rawValue),
+            RMCharacterInfo(type: .origin, name: character.origin.name)
+        ]
+    }
+    
 }

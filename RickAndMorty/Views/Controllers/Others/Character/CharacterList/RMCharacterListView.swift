@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol RMCharacterListViewDelegate: AnyObject {
-    func didSelectACharacter(_ character: RMCharacter)
+    func didSelectACharacter(_ character: RMCharacter, photo: UIImage)
 }
 
 final class RMCharacterListView: UIView {
@@ -106,8 +106,12 @@ extension RMCharacterListView: UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let character = characters[indexPath.row]
-        delegate?.didSelectACharacter(character)
-        collectionView.deselectItem(at: indexPath, animated: true)
+        if let photo = (collectionView.cellForItem(at: indexPath) as? RMCharacterCell)?.imageView.image {
+            delegate?.didSelectACharacter(character, photo: photo)
+            collectionView.deselectItem(at: indexPath, animated: true)
+        } else {
+            
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

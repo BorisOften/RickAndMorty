@@ -47,14 +47,20 @@ extension RMCharacterDetailViewController {
     
     //MARK: - Assign Data and Style Views
     func assignStaticData() {
+        
+        contentView.backgroundColor = .white
+        
+        characterPhoto.layer.cornerRadius = 30
+        characterPhoto.layer.shadowColor = UIColor.gray.cgColor
+        characterPhoto.layer.shadowOpacity = 0.5
+        
         infoCollectionView.delegate = self
         infoCollectionView.dataSource = self
         infoCollectionView.register(RMCharacterDetailInfoCell.self, forCellWithReuseIdentifier: RMCharacterDetailInfoCell.cellIdentifier)
         
         episodesCollectionView.delegate = self
         episodesCollectionView.dataSource = self
-        episodesCollectionView.register(RMCharacterDetailEpisodeCell.self, forCellWithReuseIdentifier: RMCharacterDetailEpisodeCell.cellIdentifier)
-    }
+        episodesCollectionView.register(RMCharacterDetailEpisodeCell.self, forCellWithReuseIdentifier: RMCharacterDetailEpisodeCell.cellIdentifier)    }
     
     //MARK: - Assign Data from Server/ ParentVC
     func assignData() {
@@ -72,10 +78,10 @@ extension RMCharacterDetailViewController {
         ])
         
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
@@ -90,25 +96,25 @@ extension RMCharacterDetailViewController {
             characterPhoto.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             characterPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             characterPhoto.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            characterPhoto.heightAnchor.constraint(equalToConstant: 140)
+            characterPhoto.heightAnchor.constraint(equalToConstant: 340)
         ])
         
         NSLayoutConstraint.activate([
-            infoCollectionView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            infoCollectionView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            infoCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10),
+            infoCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
             infoCollectionView.topAnchor.constraint(equalTo: characterPhoto.bottomAnchor, constant: 10),
             infoCollectionView.heightAnchor.constraint(equalToConstant: 300)
         ])
         
         NSLayoutConstraint.activate([
-            episodesCollectionView.topAnchor.constraint(equalTo: infoCollectionView.bottomAnchor, constant: -5),
+            episodesCollectionView.topAnchor.constraint(equalTo: infoCollectionView.bottomAnchor, constant: 10),
             episodesCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             episodesCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             episodesCollectionView.heightAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
-            contentView.bottomAnchor.constraint(equalTo: episodesCollectionView.bottomAnchor, constant: 10)
+            contentView.bottomAnchor.constraint(equalTo: episodesCollectionView.bottomAnchor, constant: 10),
         ])
     }
 }

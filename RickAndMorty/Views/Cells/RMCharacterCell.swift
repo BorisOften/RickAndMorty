@@ -63,10 +63,16 @@ extension RMCharacterCell {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        imageView.layer.cornerRadius = 10
-        contentView.layer.shadowOpacity = 1
-        contentView.layer.shadowColor = UIColor.lightGray.cgColor
-        contentView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+        
+        if previousTraitCollection?.userInterfaceStyle == .light {
+            imageView.layer.cornerRadius = 10
+            contentView.layer.shadowOpacity = 1
+            contentView.layer.shadowColor = UIColor.lightGray.cgColor
+            contentView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+            contentView.backgroundColor = .gray
+        } else {
+            contentView.backgroundColor = .white
+        }
     }
     
     //MARK: - Assign Data and Style Views
@@ -90,9 +96,9 @@ extension RMCharacterCell {
         
         // statusLabel
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusLabel.font = .systemFont(ofSize: 16, weight: .medium)
         statusLabel.textAlignment = .center
-        statusLabel.textColor = .gray
+        statusLabel.textColor = .black
+        statusLabel.font = .italicSystemFont(ofSize: 16)
     }
     
     //MARK: - Set Layout Contraints
