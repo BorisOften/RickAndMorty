@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "89E61249-8B20-432C-BD86-F175954E0679"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7FB88269-D045-4C7D-8D3B-8C60AEF97D08"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickyAndMorty/Screens/Cells/CollectionView/RMCharacter/ViewModel/RMCharacterCellViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "fetchImage(imageURL:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7FB88269-D045-4C7D-8D3B-8C60AEF97D08 - 6ef6cf2817c1ee5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for RickyAndMorty.RMCharacterCellViewModel.fetchImage(imageURL: Swift.String) async -&gt; ()"
+                  moduleName = "RickyAndMorty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/borisofon/github_repo/Learning/IOS/Youtube/Ios_academy/RickAndMorty/RickyAndMorty/Screens/Cells/CollectionView/RMCharacter/ViewModel/RMCharacterCellViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "507">
+               </Location>
+               <Location
+                  uuid = "7FB88269-D045-4C7D-8D3B-8C60AEF97D08 - a4bdd11eeaf24c5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for RickyAndMorty.RMCharacterCellViewModel.fetchImage(imageURL: Swift.String) async -&gt; ()"
+                  moduleName = "RickyAndMorty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/borisofon/github_repo/Learning/IOS/Youtube/Ios_academy/RickAndMorty/RickyAndMorty/Screens/Cells/CollectionView/RMCharacter/ViewModel/RMCharacterCellViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "217">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB81AF7D-B8D9-4AF4-A85A-4BB511E1C4A9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickyAndMorty/Screens/Cells/CollectionView/RMCharacter/View/RMCharacterCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "addAvaterImg()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

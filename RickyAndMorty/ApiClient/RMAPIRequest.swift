@@ -24,7 +24,7 @@ extension RMAPIRequestProtocol {
     // Base Url
     var host: String {
         //APIConstants.baseURL
-        return ""
+        return "rickandmortyapi.com"
     }
     
     var headers: [String: String] {
@@ -43,7 +43,8 @@ extension RMAPIRequestProtocol {
         var components = URLComponents()
         components.host = host
         components.path = path
-        
+        components.scheme = "https"
+
         if !queryItems.isEmpty {
             components.queryItems = queryItems.map { URLQueryItem(name: $0, value: $1) }
         }
@@ -63,6 +64,7 @@ extension RMAPIRequestProtocol {
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
         }
         
+        print(urlRequest.url)
         return urlRequest
     }
 }

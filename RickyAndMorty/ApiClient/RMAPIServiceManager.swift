@@ -27,4 +27,17 @@ final class RMAPIServiceManager {
             throw RMNetworkError.invalidServerResponse
         }
     }
+    
+   func request(_ request: URLRequest) async throws -> Data {
+        let (data, response) = try await urlSession.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else { throw RMNetworkError.invalidServerResponse }
+        
+        switch httpResponse.statusCode {
+        case 200...209:
+            return data
+        default:
+            throw RMNetworkError.invalidServerResponse
+        }
+    }
 }
