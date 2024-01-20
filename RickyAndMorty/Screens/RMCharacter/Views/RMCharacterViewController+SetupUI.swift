@@ -41,6 +41,7 @@ extension RMCharacterViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(RMCharacterCell.self, forCellWithReuseIdentifier: RMCharacterCell.reuseID)
+        collectionView.register(RMFooterLoadingCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: RMFooterLoadingCollectionView.reuseID)
         collectionView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([

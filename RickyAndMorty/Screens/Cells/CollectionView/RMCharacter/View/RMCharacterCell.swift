@@ -41,11 +41,13 @@ class RMCharacterCell: UICollectionViewCell {
         self.viewModel = viewModel
         
         self.nameLabel.text = character.name
-        self.statusLabel.text = character.status.rawValue
+        self.statusLabel.text = "Status: \(character.status.rawValue.capitalized)"
         
         Task {
             await self.viewModel?.fetchImage(imageURL: character.image)
         }
+        
+        //print(Unmanaged.passUnretained(self.viewModel!).toOpaque())
     }
 }
 
@@ -66,11 +68,8 @@ extension RMCharacterCell {
 extension RMCharacterCell {
     
     func configureCell() { 
-        backgroundColor = .secondarySystemBackground
         
-        //layer.cornerRadius = 10
-        //layer.shadowOpacity = 1
-        //layer.shadowRadius = 1
+        
         addAvaterImg()
         addNameLabel()
         addStatusLabel()
@@ -122,6 +121,15 @@ extension RMCharacterCell {
             statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             statusLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        contentView.backgroundColor = .secondarySystemBackground
+        
+        contentView.layer.cornerRadius = 10
+        contentView.layer.shadowOpacity = 0.7
+        contentView.layer.shadowRadius = 1
+        contentView.layer.shadowColor = UIColor.label.cgColor
     }
 
 }

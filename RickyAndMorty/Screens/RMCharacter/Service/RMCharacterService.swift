@@ -9,6 +9,7 @@ import Foundation
 
 protocol RMCharacterServiceProtocol {
     func getAllCharacters(request: AllCharacterRequest) async throws -> RMAllCharacters
+    func getMoreCharacters(request: URLRequest) async throws -> RMAllCharacters
 }
 
 class RMCharacterService: RMCharacterServiceProtocol {
@@ -22,5 +23,9 @@ class RMCharacterService: RMCharacterServiceProtocol {
         return allCharacters
     }
     
-    
+    func getMoreCharacters(request: URLRequest) async throws -> RMAllCharacters {
+        let data = try await requestManager.request(request)
+        let allCharacters = try JSONDecoder().decode(RMAllCharacters.self, from: data)
+        return allCharacters
+    }
 }
