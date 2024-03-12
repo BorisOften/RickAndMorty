@@ -56,7 +56,10 @@ extension RMCharacterCell {
     
     func bindViewModelMethods() {
         viewModel?.avatarImage = { image in
-            self.avatarImg.image = image
+            
+            UIView.transition(with: self, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                self.avatarImg.image = image
+            })
         }
         
         viewModel?.error = { _ in

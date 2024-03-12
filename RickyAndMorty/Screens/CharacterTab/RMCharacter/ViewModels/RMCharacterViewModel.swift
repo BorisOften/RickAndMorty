@@ -15,7 +15,7 @@ final class RMCharacterViewModel {
     var nextURLForMoreCharacters: String? = nil
     var isFetchingMoreCharacters = false
     
-    // MARK: Research these( what happens if it is nil, will it crash)
+    // MARK: Research these( what happens if it is nil, will it crash?)
     var allCharacters: ([RMCharacter]) -> () = {_ in }
     var error: (Error) -> () = {_ in }
     
